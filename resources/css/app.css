@@ -1,0 +1,275 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  /* Banner Overlay */
+  .banner-overlay {
+    @apply absolute inset-0 bg-black/50;
+  }
+  
+  /* Divider */
+  .divider {
+    @apply w-11 h-0.5 rounded bg-brand-blue mx-auto my-5 relative;
+  }
+  
+  .divider::before {
+    content: '';
+    display: block;
+    width: 17px;
+    height: 3px;
+    border-top: 3px dotted #34a0ff;
+    position: absolute;
+    right: 50px;
+    top: 0;
+  }
+}
+
+@layer utilities {
+  /* Custom scrollbar */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .navigation-bar {
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.nav-logo img {
+    height: 50px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+    color: #007bff;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    list-style: none;
+    padding: 0.5rem 0;
+    min-width: 200px;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.language-switcher {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.language-switcher a {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+}
+
+.language-switcher a.active {
+    background: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.footer {
+    background: #2c3e50;
+    color: #fff;
+    padding: 3rem 0 1rem;
+    margin-top: 4rem;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 0 2rem;
+}
+
+.footer-section h3 {
+    margin-bottom: 1rem;
+    color: #3498db;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section a {
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-section a:hover {
+    color: #fff;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icons a img {
+    width: 32px;
+    height: 32px;
+    filter: brightness(0) invert(1);
+    transition: opacity 0.3s;
+}
+
+.social-icons a:hover img {
+    opacity: 0.7;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 2rem 0 1rem;
+    border-top: 1px solid #34495e;
+    margin-top: 2rem;
+}
+
+.banner-section {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+}
+
+.banner-slide {
+    position: relative;
+    height: 100%;
+}
+
+.banner-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.banner-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.banner-btn {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-top: 1rem;
+}
+
+.story-section,
+.quick-links-section,
+.news-cards-section {
+    padding: 4rem 0;
+}
+
+.quick-links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.quick-link-box {
+    text-align: center;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.3s;
+}
+
+.quick-link-box:hover {
+    transform: translateY(-5px);
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.news-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.news-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.news-card-content {
+    padding: 1.5rem;
+}
+
+}
