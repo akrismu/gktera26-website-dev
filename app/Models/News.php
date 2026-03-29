@@ -19,7 +19,10 @@ class News extends Model
         'slug',
         'excerpt',
         'content',
+        'author',
         'featured_media_id',
+        'banner_media_id',
+        'preview_media_id',
         'is_published',
         'published_at',
     ];
@@ -32,5 +35,20 @@ class News extends Model
     public function featuredMedia(): BelongsTo
     {
         return $this->belongsTo(Media::class, 'featured_media_id');
+    }
+
+    public function bannerMedia(): BelongsTo
+    {
+        return $this->belongsTo(Media::class, 'banner_media_id');
+    }
+
+    public function previewMedia(): BelongsTo
+    {
+        return $this->belongsTo(Media::class, 'preview_media_id');
+    }
+
+    public function images(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(NewsImage::class)->orderBy('order');
     }
 }

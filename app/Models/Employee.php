@@ -12,7 +12,7 @@ class Employee extends Model
 {
     use HasFactory, HasTranslations;
 
-    public $translatable = ['name', 'position', 'bio'];
+    public $translatable = ['position', 'bio'];
 
     protected $fillable = [
         'name',

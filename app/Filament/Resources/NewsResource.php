@@ -33,7 +33,6 @@ class NewsResource extends Resource
             ->schema([
                 Forms\Components\Section::make()
                     ->schema([
-                        // Translatable Title
                         Forms\Components\TextInput::make('title')
                             ->required()
                             ->live(onBlur: true)
@@ -45,34 +44,46 @@ class NewsResource extends Resource
                             ->maxLength(255)
                             ->label('Title'),
                         
-                        // Slug - Not translatable
                         Forms\Components\TextInput::make('slug')
                             ->required()
                             ->unique(ignoreRecord: true)
                             ->maxLength(255)
                             ->label('Slug (URL)')
                             ->helperText('This will be same for all languages'),
+
+                        Forms\Components\TextInput::make('author')
+                            ->maxLength(255)
+                            ->label('Author'),
                         
-                        // Translatable Excerpt
                         Forms\Components\Textarea::make('excerpt')
                             ->rows(3)
                             ->maxLength(500)
                             ->label('Excerpt')
                             ->columnSpanFull(),
                         
-                        // Translatable Content
                         Forms\Components\RichEditor::make('content')
                             ->required()
                             ->label('Content')
                             ->columnSpanFull(),
                         
-                        // Featured Image - Not translatable
-                        CuratorPicker:: make('featured_media_id')
+                        CuratorPicker::make('featured_media_id')
                             ->label('Featured Image')
                             ->buttonLabel('Select Image')
                             ->size('sm')
+                            ->listDisplay(),
+
+                        CuratorPicker::make('banner_media_id')
+                            ->label('Banner Image')
+                            ->buttonLabel('Select Banner')
+                            ->size('sm')
+                            ->listDisplay(),
+
+                        CuratorPicker::make('preview_media_id')
+                            ->label('Preview Image')
+                            ->buttonLabel('Select Preview')
+                            ->size('sm')
                             ->listDisplay()
-                            ->columnSpanFull(),
+                            ->helperText('Thumbnail shown in news listing'),
                         
                         Forms\Components\Toggle::make('is_published')
                             ->label('Published')
@@ -84,6 +95,29 @@ class NewsResource extends Resource
                             ->visible(fn (Forms\Get $get) => $get('is_published'))
                             ->default(now()),
                     ])->columns(2),
+
+                Forms\Components\Section::make('Gallery')
+                    ->schema([
+                        Forms\Components\Repeater::make('images')
+                            ->relationship()
+                            ->schema([
+                                CuratorPicker::make('media_id')
+                                    ->label('Image')
+                                    ->buttonLabel('Select Image')
+                                    ->size('sm')
+                                    ->listDisplay()
+                                    ->required(),
+
+                                Forms\Components\TextInput::make('order')
+                                    ->numeric()
+                                    ->default(0)
+                                    ->label('Display Order'),
+                            ])
+                            ->orderColumn('order')
+                            ->collapsible()
+                            ->columns(2)
+                            ->defaultItems(0),
+                    ]),
             ]);
     }
 

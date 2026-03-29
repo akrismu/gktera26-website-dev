@@ -1,0 +1,78 @@
+.timeline-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.timeline {
+    position: relative;
+    margin: 20px auto;
+    padding: 20px 0;
+}
+
+/* The center vertical line */
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #2B88D9;
+}
+
+.timeline-event {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 40px 0;
+    padding-left: 30px;
+}
+
+.TimelineHeading {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.event-marker {
+    position: absolute;
+    left: 0;
+    transform: translateX(-50%);
+    width: 15px;
+    height: 15px;
+    background-color: #2B88D9;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.event-content {
+    width: 100%;
+}
+
+.event-content h3 {
+    color: #0f68b5;
+}
+
+@media (max-width: 768px) {
+    .timeline::before {
+        display: none;
+    }
+    .timeline-event {
+        display: block;
+        width: 100%;
+        margin: 20px 10px;
+        padding: 10px;
+        cursor: pointer;
+        border-bottom: 2px solid #eee;
+    }
+    .event-content h3, .event-content p {
+        text-align: left;
+        margin-left: 0;
+    }
+    .toggle-visibility {
+        width: 20px;
+        vertical-align: middle;
+        margin-left: 10px;
+        transition: transform 0.3s ease;
+    }
+}

@@ -14,13 +14,16 @@ class Church extends Model
 {
     use HasFactory, HasTranslations;
 
-    public $translatable = ['name', 'description']; // Add this
+    public $translatable = ['name', 'short_description', 'description'];
 
     protected $fillable = [
         'name',
         'slug',
+        'short_description',
         'description',
+        'village',
         'banner_media_id',
+        'preview_media_id',
         'latitude',
         'longitude',
         'is_active',
@@ -35,6 +38,11 @@ class Church extends Model
     public function bannerMedia(): BelongsTo
     {
         return $this->belongsTo(Media::class, 'banner_media_id');
+    }
+
+    public function previewMedia(): BelongsTo
+    {
+        return $this->belongsTo(Media::class, 'preview_media_id');
     }
 
     public function services(): HasMany

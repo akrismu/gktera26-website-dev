@@ -26,19 +26,19 @@
             @foreach($latestNews as $article)
                 <div 
                     class="news-block"
-                    onclick="window.location.href='{{ url('/news/' . $article['id']) }}'"
+                    onclick="window.location.href='{{ route('news.show', $article->slug) }}'"
                     :style="'transform: translateX(-' + (currentIndex * 105) + '%)'"
                 >
                     <div class="news-image-container">
                         <img 
-                            src="{{ $article->featuredMedia->url ?? asset('images/homeRes/gkjtu-logo.jpg') }}" 
+                            src="{{ $article->previewMedia ? asset('storage/' . $article->previewMedia->path) : ($article->featuredMedia ? asset('storage/' . $article->featuredMedia->path) : asset('images/homeRes/gkjtu-logo.jpg')) }}" 
                             alt="{{ $article['title'] }}"
                         />
                     </div>
                     <div class="news-info">
                         <h3>{{ $article['title'] }}</h3>
                         <span class="news-date">
-                            {{ $article->published_at ->format('d/m/Y') }}
+                            {{ $article->published_at ? $article->published_at->format('d/m/Y') : '' }}
                         </span>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                 @mouseenter="arrowSrc = arrowHover"
                 @mouseleave="arrowSrc = arrowDefault"
             >
-                <p class="seeMore">{{ Awcodes\Curator\Support\Helpers::trans_json('seeMoreBtn') }}</p>
+                <p class="seeMore">{{ App\Http\Helpers\Helper::trans_json('seeMoreBtn') }}</p>
                 <img :src="arrowSrc" alt="Arrow" class="arrowImage"/>
             </button>
         </div>

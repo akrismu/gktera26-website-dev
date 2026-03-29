@@ -58,6 +58,15 @@ class BannerResource extends Resource
                             ->rows(2)
                             ->placeholder('Banner Subtitle')
                             ->label('Subtitle'),
+
+                        Forms\Components\Select::make('type')
+                            ->options([
+                                'banner' => 'Banner',
+                                'other' => 'Other',
+                            ])
+                            ->default('banner')
+                            ->required()
+                            ->label('Type'),
                         
                         // Banner Image - Not translatable
                         CuratorPicker::make('media_id')

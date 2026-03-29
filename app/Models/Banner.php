@@ -18,6 +18,7 @@ class Banner extends Model
         'page_identifier',
         'title',
         'subtitle',
+        'type',
         'media_id',
         'is_active',
     ];

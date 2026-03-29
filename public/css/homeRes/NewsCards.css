@@ -142,7 +142,10 @@
 .seeMore {
   font-size: 1em;
   font-weight: bold;
+  margin: 0;
+  padding: 0;
   margin-right: 10px;
+  line-height: 1;
 }
 
 .seeMoreButton img {

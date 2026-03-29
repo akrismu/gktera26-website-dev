@@ -5,15 +5,15 @@
 
 <div class="story">
     <div>
-        <h2 class="h2blue">{{ Awcodes\Curator\Support\Helpers::trans_json('storySection.title') }}</h2>
-        <p>{{ Awcodes\Curator\Support\Helpers::trans_json('storySection.description') }}</p>
+        <h2 class="h2blue">{{ App\Http\Helpers\Helper::trans_json('storySection.title') }}</h2>
+        <p>{{ App\Http\Helpers\Helper::trans_json('storySection.description') }}</p>
         
         <div class="container">
             <div>
                 <div class="story-card" onclick="window.location.href='{{ url('/about/history') }}'">
-                    <h3>{{ Awcodes\Curator\Support\Helpers::trans_json('storySection.storyTitle') }}</h3>
-                    <p>{{ Awcodes\Curator\Support\Helpers::trans_json('storySection.story') }}</p>
-                    <p class="moreButton">{{ Awcodes\Curator\Support\Helpers::trans_json('storySection.more') }}</p>
+                    <h3>{{ App\Http\Helpers\Helper::trans_json('storySection.storyTitle') }}</h3>
+                    <p>{{ App\Http\Helpers\Helper::trans_json('storySection.story') }}</p>
+                    <p class="moreButton">{{ App\Http\Helpers\Helper::trans_json('storySection.more') }}</p>
                 </div>
 
                 <button 
@@ -27,14 +27,14 @@
                     @mouseenter="arrowSrc = arrowHover"
                     @mouseleave="arrowSrc = arrowDefault"
                 >
-                    <p class="seeMore">{{ Awcodes\Curator\Support\Helpers::trans_json('seeMoreBtn') }}</p>
+                    <p class="seeMore">{{ App\Http\Helpers\Helper::trans_json('seeMoreBtn') }}</p>
                     <img :src="arrowSrc" alt="Arrow" class="arrowImage"/>
                 </button>
             </div>
 
             <div class="story-image">
                 @foreach ($imgUrl as $img)
-                    <img src="{{ $img->media->url }}" alt="Church Activity" />
+                    <img src="{{ $img->media ? asset('storage/' . $img->media->path) : '' }}" alt="Church Activity" />
                 @endforeach
                 {{-- @else  --}}
                     {{-- <div class="loading-placeholder">Loading...</div>

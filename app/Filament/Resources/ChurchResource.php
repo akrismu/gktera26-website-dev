@@ -33,12 +33,10 @@ class ChurchResource extends Resource
             ->schema([
                 Forms\Components\Section::make('Basic Information')
                     ->schema([
-                        // Translatable Name - Shows in both languages
                         Forms\Components\TextInput::make('name')
                             ->required()
                             ->live(onBlur: true)
                             ->afterStateUpdated(function ($state, callable $set, Forms\Get $get) {
-                                // Only auto-generate slug from English name
                                 if (! $get('slug')) {
                                     $set('slug', Str::slug($state));
                                 }
@@ -46,26 +44,41 @@ class ChurchResource extends Resource
                             ->maxLength(255)
                             ->label('Church Name'),
                         
-                        // Slug - Not translatable (same for all languages)
                         Forms\Components\TextInput::make('slug')
                             ->required()
                             ->unique(ignoreRecord: true)
                             ->maxLength(255)
                             ->label('Slug (URL)')
                             ->helperText('This will be same for all languages'),
+
+                        Forms\Components\TextInput::make('village')
+                            ->maxLength(255)
+                            ->label('Village')
+                            ->helperText('Village name for geocoding'),
                         
-                        // Translatable Description
+                        Forms\Components\Textarea::make('short_description')
+                            ->rows(2)
+                            ->maxLength(500)
+                            ->label('Short Description')
+                            ->helperText('One sentence description for listing cards')
+                            ->columnSpanFull(),
+
                         Forms\Components\RichEditor::make('description')
                             ->label('Description')
                             ->columnSpanFull(),
                         
-                        // Banner - Not translatable (same image for all languages)
                         CuratorPicker::make('banner_media_id')
                             ->label('Banner Image')
                             ->buttonLabel('Select Banner')
                             ->size('sm')
+                            ->listDisplay(),
+
+                        CuratorPicker::make('preview_media_id')
+                            ->label('Preview Image')
+                            ->buttonLabel('Select Preview')
+                            ->size('sm')
                             ->listDisplay()
-                            ->columnSpanFull(),
+                            ->helperText('Thumbnail shown in church listing'),
                         
                         Forms\Components\Toggle::make('is_active')
                             ->label('Active')

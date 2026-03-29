@@ -1,0 +1,213 @@
+.newsletter-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.newsletter-description {
+    text-align: center;
+    color: #555;
+    font-size: 1.05rem;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.newsletter-year-group {
+    margin-bottom: 40px;
+}
+
+.year-heading {
+    font-size: 1.5rem;
+    color: #1657ac;
+    border-bottom: 2px solid #1657ac;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+}
+
+.newsletter-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.newsletter-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.newsletter-row:hover {
+    background: #eef6ff;
+    box-shadow: 0 2px 8px rgba(22, 87, 172, 0.1);
+}
+
+.newsletter-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+    min-width: 0;
+}
+
+.file-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.newsletter-details {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.newsletter-title {
+    font-weight: 600;
+    color: #333;
+    font-size: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.newsletter-file-name {
+    font-size: 0.85rem;
+    color: #888;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 18px;
+    background: #1657ac;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-left: 16px;
+}
+
+.download-btn:hover {
+    background: #0e3d7a;
+    transform: translateY(-1px);
+}
+
+.download-btn svg {
+    flex-shrink: 0;
+}
+
+.no-newsletters {
+    text-align: center;
+    color: #888;
+    padding: 60px 20px;
+    font-size: 1.05rem;
+}
+
+@media (max-width: 600px) {
+    .newsletter-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .download-btn {
+        margin-left: 0;
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ===== Home page newsletter section ===== */
+.newsletter-home-box {
+    background-color: #D8F2F0;
+    padding: 30px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    margin-bottom: 50px;
+    max-width: 960px;
+    text-align: center;
+}
+
+.newsletter-home-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin: 25px 0 30px;
+}
+
+.newsletter-home-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    padding: 12px 20px;
+    border-radius: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.newsletter-home-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.newsletter-home-year {
+    background: #2B88D9;
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.newsletter-home-title {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.newsletter-home-card .arrowImage {
+    height: 14px;
+    transition: transform 0.3s ease;
+}
+
+.newsletter-home-card:hover .arrowImage {
+    transform: translateX(4px);
+}
+
+@media (max-width: 600px) {
+    .newsletter-home-items {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .newsletter-home-card {
+        width: 100%;
+        max-width: 320px;
+    }
+}

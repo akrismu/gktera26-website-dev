@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{{ asset('css/homeRes/StorySection.css') }}">
     <link rel="stylesheet" href="{{ asset('css/homeRes/QuickLinksBox.css') }}">
     <link rel="stylesheet" href="{{ asset('css/homeRes/NewsCards.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/aboutRes/NewsletterPage.css') }}">
 @endpush
 
 @section('content')
@@ -16,5 +17,7 @@
         @include('components.home.quick-links')
 
         @include('components.home.news-cards')
+
+        @include('components.home.newsletter-section')
     </div>
 @endsection

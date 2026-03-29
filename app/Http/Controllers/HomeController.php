@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use App\Models\Church;
 use App\Models\News;
+use App\Models\Newsletter;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -27,8 +28,14 @@ class HomeController extends Controller
             ->latest('published_at')
             ->limit(3)
             ->get();
+
+        $latestNewsletters = Newsletter::where('is_active', true)
+            ->orderByDesc('year')
+            ->orderBy('order')
+            ->limit(3)
+            ->get();
         
-        return view('home', compact('banners', 'imgUrl', 'churches', 'latestNews'));
+        return view('home', compact('banners', 'imgUrl', 'churches', 'latestNews', 'latestNewsletters'));
     }
 
     public function index1()

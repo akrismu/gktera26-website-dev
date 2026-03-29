@@ -8,7 +8,8 @@
     "sinode": "SINODE",
     "history": "SEJARAH",
     "mission": "MISI",
-    "ministry": "DEPARTEMENT"
+    "ministry": "DEPARTEMENT",
+    "newsletter": "BULETIN"
   },
   "banner": {
     "welcomeMessage": "Selamat Datang!"
@@ -125,6 +126,7 @@
     ]
   },
   "ministryPage": {
+    "title": "Department",
     "departments": [
       {
         "title": "Departement Koinonia",
@@ -368,6 +370,13 @@
         ]
       }
     ]
+  },
+  "newsletterPage": {
+    "title": "Buletin",
+    "description": "Unduh buletin kami untuk mendapatkan informasi terbaru tentang berita dan acara dari GKJTU.",
+    "download": "Unduh",
+    "seeAll": "Lihat Semua Buletin",
+    "empty": "Belum ada buletin tersedia."
   }
 }
   

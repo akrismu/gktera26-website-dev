@@ -20,16 +20,21 @@ class ChurchController extends Controller
         
         // return view('churches.index', compact('banner', 'churches'));
 
-        $churches = Church::with('contact')->get();
+        $churches = Church::with(['contact', 'previewMedia'])->get();
 
         $churchDataForMap = $churches->map(function($church) {
             return [
                 'name' => $church->name,
                 'slug' => $church->slug,
+                'short_description' => $church->short_description,
+                'village' => $church->village,
                 'latitude' => $church->latitude,
                 'longitude' => $church->longitude,
                 'address' => $church->contact?->address ?? '',
                 'phone' => $church->contact?->phone ?? '',
+                'previewImage' => $church->previewMedia
+                    ? asset('storage/' . $church->previewMedia->path)
+                    : null,
             ];
         });
 
@@ -44,9 +49,16 @@ class ChurchController extends Controller
     {
         $church = Church::where('slug', $slug)
             ->where('is_active', true)
-            ->with(['bannerMedia', 'services', 'contact', 'images. media'])
+            ->with(['bannerMedia', 'previewMedia', 'services', 'contact', 'images.media'])
             ->firstOrFail();
+
+        // Latest news for the bottom section
+        $latestNews = \App\Models\News::where('is_published', true)
+            ->with(['previewMedia', 'featuredMedia'])
+            ->latest('published_at')
+            ->take(3)
+            ->get();
         
-        return view('churches.show', compact('church'));
+        return view('churches.show', compact('church', 'latestNews'));
     }
 }

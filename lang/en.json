@@ -8,7 +8,8 @@
     "sinode": "SINODE",
     "history": "HISTORY",
     "mission": "MISSION",
-    "ministry": "MINISTRY"
+    "ministry": "MINISTRY",
+    "newsletter": "NEWSLETTER"
   },
   "banner": {
     "welcomeMessage": "Welcome to our Church!"
@@ -125,6 +126,7 @@
     ]
   },
   "ministryPage": {
+    "title": "Our Ministries",
     "departments": [
       {
         "title": "Koinonia Department",
@@ -367,5 +369,12 @@
         ]
       }
     ]
+  },
+  "newsletterPage": {
+    "title": "Newsletters",
+    "description": "Download our newsletters to stay updated with the latest news and events from GKJTU.",
+    "download": "Download",
+    "seeAll": "See All Newsletters",
+    "empty": "No newsletters available yet."
   }
 }

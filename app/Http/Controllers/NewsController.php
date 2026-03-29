@@ -14,27 +14,39 @@ class NewsController extends Controller
             ->where('is_active', true)
             ->first();
         
-        $news = News::where('is_published', true)
-            ->with('featuredMedia')
+        $paginator = News::where('is_published', true)
+            ->with(['featuredMedia', 'previewMedia'])
             ->latest('published_at')
             ->paginate(9);
+
+        $newsArticles = collect($paginator->items())->map(function($item) {
+            return [
+                'id' => $item->id,
+                'title' => $item->title,
+                'slug' => $item->slug,
+                'excerpt' => $item->excerpt ?? \Illuminate\Support\Str::limit(strip_tags($item->content), 120),
+                'author' => $item->author ?? 'Admin', 
+                'date' => $item->published_at,
+                'previewImage' => [
+                    'url' => $item->previewMedia
+                        ? asset('storage/' . $item->previewMedia->path)
+                        : ($item->featuredMedia
+                            ? asset('storage/' . $item->featuredMedia->path)
+                            : asset('images/default-news.jpg'))
+                ]
+            ];
+        });
         
-        return view('news.index', compact('banner', 'news'));
+        return view('news.index', compact('banner', 'newsArticles', 'paginator'));
     }
     
     public function show($slug)
     {
-        $article = News::where('slug', $slug)
+        $news = News::where('slug', $slug)
             ->where('is_published', true)
-            ->with('featuredMedia')
+            ->with(['featuredMedia', 'bannerMedia', 'previewMedia', 'images.media'])
             ->firstOrFail();
-        
-        $relatedNews = News::where('is_published', true)
-            ->where('id', '!=', $article->id)
-            ->latest('published_at')
-            ->limit(3)
-            ->get();
-        
-        return view('news.show', compact('article', 'relatedNews'));
+
+        return view('news.show', compact('news'));
     }
 }

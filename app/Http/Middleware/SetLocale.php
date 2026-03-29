@@ -10,6 +10,12 @@ class SetLocale
 {
     public function handle(Request $request, Closure $next): Response
     {
+        // Keep Filament admin panel always in English
+        if ($request->is('admin') || $request->is('admin/*') || $request->is('livewire/*')) {
+            app()->setLocale('en');
+            return $next($request);
+        }
+
         $locale = session('locale', config('app.locale'));
         
         if (!in_array($locale, ['en', 'id'])) {

@@ -1,13 +1,13 @@
 <div class="quick-links-box">
     <div class="quick-links-box-content">
-        <h2 class="h2blue">{{ Awcodes\Curator\Support\Helpers::trans_json('quickLinks.title') }}</h2>
-        <p>{{ Awcodes\Curator\Support\Helpers::trans_json('quickLinks.description') }}</p>
+        <h2 class="h2blue">{{ App\Http\Helpers\Helper::trans_json('quickLinks.title') }}</h2>
+        <p>{{ App\Http\Helpers\Helper::trans_json('quickLinks.description') }}</p>
 
         <div class="quick-links">
             @if(isset($churches) && count($churches) > 0)
                 @foreach($churches as $church)
                     <button 
-                        onclick="window.location.href='{{ url('/churches/' . $church['id']) }}'"
+                        onclick="window.location.href='{{ url('/churches/' . $church->slug) }}'"
                     >
                         {{ $church->name }}
                     </button>
@@ -29,7 +29,7 @@
                 @mouseenter="arrowSrc = arrowHover"
                 @mouseleave="arrowSrc = arrowDefault"
             >
-                <p class="seeMore">{{ Awcodes\Curator\Support\Helpers::trans_json('seeMoreBtn') }}</p>
+                <p class="seeMore">{{ App\Http\Helpers\Helper::trans_json('seeMoreBtn') }}</p>
                 <img :src="arrowSrc" alt="Arrow" class="arrowImage"/>
             </button>
         </div>

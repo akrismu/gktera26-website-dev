@@ -51,18 +51,19 @@
         </div>
 
         <div class="popup-menu-links">
-            <a href="{{ url('/') }}" @click="isMenuOpen = false">{{ Awcodes\Curator\Support\Helpers::trans_json('navBar.home') }}</a>
-            <a href="{{ url('/news') }}" @click="isMenuOpen = false">{{ Awcodes\Curator\Support\Helpers::trans_json('navBar.news') }}</a>
-            <a href="{{ url('/churches') }}" @click="isMenuOpen = false">{{ Awcodes\Curator\Support\Helpers::trans_json('navBar.churches') }}</a>
+            <a href="{{ url('/') }}" @click="isMenuOpen = false">{{ App\Http\Helpers\Helper::trans_json('navBar.home') }}</a>
+            <a href="{{ url('/news') }}" @click="isMenuOpen = false">{{ App\Http\Helpers\Helper::trans_json('navBar.news') }}</a>
+            <a href="{{ url('/churches') }}" @click="isMenuOpen = false">{{ App\Http\Helpers\Helper::trans_json('navBar.churches') }}</a>
             
             <div class="dropdown">
-                <a href="javascript:void(0)" @click="toggleDropdown($event)">{{ Awcodes\Curator\Support\Helpers::trans_json('navBar.about') }}</a>
+                <a href="javascript:void(0)" @click="toggleDropdown($event)">{{ App\Http\Helpers\Helper::trans_json('navBar.about') }}</a>
                 
                 <div class="dropdown-content" x-show="isDropdownOpen" style="display: none;" x-transition>
-                    <a href="{{ url('/about') }}" @click="closeMenu">{{ Awcodes\Curator\Support\Helpers::trans_json('navBar.sinode') }}</a>
-                    <a href="{{ url('/about/history') }}" @click="closeMenu">{{ Awcodes\Curator\Support\Helpers::trans_json('navBar.history') }}</a>
-                    <a href="{{ url('/about/mission') }}" @click="closeMenu">{{ Awcodes\Curator\Support\Helpers::trans_json('navBar.mission') }}</a>
-                    <a href="{{ url('/about/ministrys') }}" @click="closeMenu">{{ Awcodes\Curator\Support\Helpers::trans_json('navBar.ministry') }}</a>
+                    <a href="{{ url('/about') }}" @click="closeMenu">{{ App\Http\Helpers\Helper::trans_json('navBar.sinode') }}</a>
+                    <a href="{{ url('/about/history') }}" @click="closeMenu">{{ App\Http\Helpers\Helper::trans_json('navBar.history') }}</a>
+                    <a href="{{ url('/about/mission') }}" @click="closeMenu">{{ App\Http\Helpers\Helper::trans_json('navBar.mission') }}</a>
+                    <a href="{{ url('/about/ministrys') }}" @click="closeMenu">{{ App\Http\Helpers\Helper::trans_json('navBar.ministry') }}</a>
+                    <a href="{{ url('/about/newsletters') }}" @click="closeMenu">{{ App\Http\Helpers\Helper::trans_json('navBar.newsletter') }}</a>
                 </div>
             </div>
         </div>
@@ -75,17 +76,18 @@
     </div>
 
     <nav class="navbar__links">
-        <a href="{{ url('/') }}">{{ Awcodes\Curator\Support\Helpers::trans_json('navBar.home') }}</a>
-        <a href="{{ url('/news') }}">{{ Awcodes\Curator\Support\Helpers::trans_json('navBar.news') }}</a>
-        <a href="{{ url('/churches') }}">{{ Awcodes\Curator\Support\Helpers::trans_json('navBar.churches') }}</a>
+        <a href="{{ url('/') }}">{{ App\Http\Helpers\Helper::trans_json('navBar.home') }}</a>
+        <a href="{{ url('/news') }}">{{ App\Http\Helpers\Helper::trans_json('navBar.news') }}</a>
+        <a href="{{ url('/churches') }}">{{ App\Http\Helpers\Helper::trans_json('navBar.churches') }}</a>
         
         <div class="dropdown">
-            <a href="{{ url('/about') }}" class="dropbtn">{{ Awcodes\Curator\Support\Helpers::trans_json('navBar.about') }}</a>
+            <a href="{{ url('/about') }}" class="dropbtn">{{ App\Http\Helpers\Helper::trans_json('navBar.about') }}</a>
             <div class="dropdown-content">
-                <a href="{{ url('/about') }}">{{ Awcodes\Curator\Support\Helpers::trans_json('navBar.sinode') }}</a>
-                <a href="{{ url('/about/history') }}">{{ Awcodes\Curator\Support\Helpers::trans_json('navBar.history') }}</a>
-                <a href="{{ url('/about/mission') }}">{{ Awcodes\Curator\Support\Helpers::trans_json('navBar.mission') }}</a>
-                <a href="{{ url('/about/ministrys') }}">{{ Awcodes\Curator\Support\Helpers::trans_json('navBar.ministry') }}</a>
+                <a href="{{ url('/about') }}">{{ App\Http\Helpers\Helper::trans_json('navBar.sinode') }}</a>
+                <a href="{{ url('/about/history') }}">{{ App\Http\Helpers\Helper::trans_json('navBar.history') }}</a>
+                <a href="{{ url('/about/mission') }}">{{ App\Http\Helpers\Helper::trans_json('navBar.mission') }}</a>
+                <a href="{{ url('/about/ministrys') }}">{{ App\Http\Helpers\Helper::trans_json('navBar.ministry') }}</a>
+                <a href="{{ url('/about/newsletters') }}">{{ App\Http\Helpers\Helper::trans_json('navBar.newsletter') }}</a>
             </div>
         </div>
     </nav>
