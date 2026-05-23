@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }).addTo(map);
 
     const customIcon = L.icon({
-        iconUrl: '{{ asset("images/record.png") }}',
+        iconUrl: '{{ asset("images/churchRes/record.svg") }}',
         className: 'church-icon',
         iconSize: [27, 25],
         iconAnchor: [12, 25],
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     const customIconHover = L.icon({
-        iconUrl: '{{ asset("images/record.png") }}',
+        iconUrl: '{{ asset("images/churchRes/record.svg") }}',
         className: 'church-icon',
         iconSize: [35, 33],
         iconAnchor: [15, 27],

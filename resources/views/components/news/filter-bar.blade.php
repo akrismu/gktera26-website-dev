@@ -1,7 +1,7 @@
 <div style="position: relative;">
     {{-- Filter Trigger Button --}}
     <div class="filter-button" @click="showFilterDropdown = !showFilterDropdown">
-        <img src="{{ asset('images/newsRes/filter.png') }}" class="filter-image" alt="Filter" />
+        <img src="{{ asset('images/newsRes/filter.svg') }}" class="filter-image" alt="Filter" />
         <span x-text="selectedChurch === '' ? '{{ __('Filter & Sort') }}' : selectedChurch"></span>
     </div>
 
