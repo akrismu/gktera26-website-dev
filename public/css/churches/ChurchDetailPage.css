@@ -1,0 +1,110 @@
+.church-banner {
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    position: relative;
+}
+
+.church-banner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+}
+
+.church-banner .banner-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.7);
+}
+
+.church-detail-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.church-detail-text {
+    width: 100%;
+}
+
+.church-detail-text h1 {
+    color: #0f68b5;
+    margin-bottom: 10px;
+}
+
+.church-detail-text h2 {
+    color: #0f68b5;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.church-description {
+    text-align: justify;
+    line-height: 1.8;
+}
+
+.church-images-section {
+    width: 100%;
+    margin-top: 40px;
+}
+
+.church-images-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    width: 100%;
+}
+
+.image-card {
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border: 1px solid lightgray;
+}
+
+.image-card-wrapper {
+    width: 100%;
+    height: 0;
+    padding-bottom: 75%;
+    overflow: hidden;
+    position: relative;
+}
+
+.image-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .church-banner {
+        height: 250px;
+    }
+    .church-detail-content {
+        padding: 20px;
+    }
+    .church-images-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .church-images-grid {
+        grid-template-columns: 1fr;
+    }
+}

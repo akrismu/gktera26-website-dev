@@ -1,0 +1,46 @@
+name: AutoDeploy
+
+on:
+  push:
+    branches:
+      - dev/filament
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Deploy DEV via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script_stop_on_error: true
+          script: |
+            if [ "${{ github.ref_name }}" = "main" ]; then
+              cd /var/www/main.gktera26.org
+            else
+              cd /var/www/dev.gktera26.org
+            fi
+            
+            git pull origin ${{ github.ref_name }}
+            
+            sudo chown -R $(whoami):www-data .
+            sudo find . -type d -exec chmod 775 {} \;
+            sudo find . -type f -exec chmod 664 {} \;
+            sudo chmod -R 775 storage bootstrap/cache public
+            
+            composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
+            php artisan migrate --force
+
+            sudo php artisan storage:link --force
+            
+            php artisan optimize:clear
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache

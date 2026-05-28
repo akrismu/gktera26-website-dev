@@ -1,0 +1,37 @@
+/* Curator Custom Styles */
+
+/* Smaller modal */
+.curator-panel {
+    max-width: 600px ! important;
+}
+
+/* Smaller thumbnails in list view */
+.curator-picker-list .curator-thumbnail {
+    width: 60px ! important;
+    height: 60px !important;
+    object-fit: cover;
+}
+
+/* Compact list items */
+.curator-picker-list .curator-item {
+    padding: 0. 5rem !important;
+    gap: 0.75rem !important;
+}
+
+/* File name truncate */
+.curator-picker-list .curator-item-name {
+    font-size: 0.875rem;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Close button ensure visible */
+.curator-panel .modal-close-button {
+    display: block !important;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 50;
+}
