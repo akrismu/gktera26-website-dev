@@ -31,8 +31,8 @@ class Church extends Model
 
     protected $casts = [
         'is_active' => 'boolean',
-        'latitude' => 'decimal:8',
-        'longitude' => 'decimal:8',
+        'latitude' => 'decimal:17',
+        'longitude' => 'decimal:17',
     ];
 
     public function bannerMedia(): BelongsTo

@@ -90,13 +90,13 @@ class ChurchResource extends Resource
                     ->schema([
                         Forms\Components\TextInput::make('latitude')
                             ->numeric()
-                            ->step(0.00000001)
+                            ->step(0.0000000000000001)
                             ->placeholder('e.g., -6.2088')
                             ->label('Latitude'),
                         
                         Forms\Components\TextInput::make('longitude')
                             ->numeric()
-                            ->step(0.00000001)
+                            ->step(0.0000000000000001)
                             ->placeholder('e.g., 106.8456')
                             ->label('Longitude'),
                     ])->columns(2),
