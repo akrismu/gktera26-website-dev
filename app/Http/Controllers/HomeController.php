@@ -6,7 +6,6 @@ use App\Models\Banner;
 use App\Models\Church;
 use App\Models\News;
 use App\Models\Newsletter;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -21,12 +20,12 @@ class HomeController extends Controller
             ->get();
         
         $churches = Church::where('is_active', true)
-            ->limit(6)
+            ->inRandomOrder()
+            ->limit(10)
             ->get();
         
         $latestNews = News::where('is_published', true)
             ->latest('published_at')
-            ->limit(3)
             ->get();
 
         $latestNewsletters = Newsletter::where('is_active', true)

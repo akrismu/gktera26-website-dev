@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use App\Models\Banner;
-use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
@@ -27,13 +26,21 @@ class NewsController extends Controller
                 'excerpt' => $item->excerpt ?? \Illuminate\Support\Str::limit(strip_tags($item->content), 120),
                 'author' => $item->author ?? 'Admin', 
                 'date' => $item->published_at,
+                'featuredImage' => [
+                    'url' => $item->featuredMedia
+                        ? asset('storage/' . $item->featuredMedia->path)
+                        : null,
+                ],
                 'previewImage' => [
                     'url' => $item->previewMedia
                         ? asset('storage/' . $item->previewMedia->path)
-                        : ($item->featuredMedia
-                            ? asset('storage/' . $item->featuredMedia->path)
-                            : asset('images/default-news.jpg'))
-                ]
+                        : asset('images/default-news.jpg'),
+                ],
+                'bannerImage' => [
+                    'url' => $item->bannerMedia
+                        ? asset('storage/' . $item->bannerMedia->path)
+                        : null,
+                ],
             ];
         });
         
@@ -47,6 +54,13 @@ class NewsController extends Controller
             ->with(['featuredMedia', 'bannerMedia', 'previewMedia', 'images.media'])
             ->firstOrFail();
 
-        return view('news.show', compact('news'));
+        $relatedNews = News::where('is_published', true)
+            ->where('id', '!=', $news->id)
+            ->with(['previewMedia'])
+            ->latest('published_at')
+            ->limit(3)
+            ->get();
+
+        return view('news.show', compact('news', 'relatedNews'));
     }
 }

@@ -77,11 +77,27 @@
   flex-grow: 1;
 }
 
-.news-date {
+.news-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  font-size: 0.82em;
   color: #3079D9;
+}
+
+.news-author {
+  font-weight: 600;
+}
+
+.news-divider {
+  color: #8aa7d8;
+}
+
+.news-date {
+  color: inherit;
   font-style: italic;
-  font-size: 0.8em;
-  margin-top: auto;
 }
 
 .news-info p {

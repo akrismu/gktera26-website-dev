@@ -4,6 +4,7 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/homeRes/Banner.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/homeRes/NewsCards.css') }}">
     <link rel="stylesheet" href="{{ asset('css/newsRes/NewsDetailPage.css') }}">
 @endpush
 
@@ -13,11 +14,9 @@
     @php
         $bannerUrl = $news->bannerMedia
             ? asset('storage/' . $news->bannerMedia->path)
-            : ($news->featuredMedia
-                ? asset('storage/' . $news->featuredMedia->path)
-                : asset('images/default-news.jpg'));
+            : null;
     @endphp
-    <div class="banner darker" style="background-image: url('{{ $bannerUrl }}'); background-size: cover; background-position: center;">
+    <div class="banner darker" style="{{ $bannerUrl ? "background-image: url('{$bannerUrl}'); background-size: cover; background-position: center;" : 'background-color: #1657ac;' }}">
         <div class="banner-content">
             <h1>{{ $news->title }}</h1>
             <div class="divider"></div>
@@ -28,7 +27,7 @@
     <div class="news-detail-page">
         <p style="color: #888; margin-bottom: 1.5rem;">
             {{ $news->author ?? 'Admin' }} &mdash;
-            {{ $news->published_at ? $news->published_at->format('d M Y') : '' }}
+            {{ $news->published_at ? $news->published_at->locale('id')->translatedFormat('d F Y') : '' }}
         </p>
 
         <div class="news-content">
@@ -53,6 +52,19 @@
                     @endif
                 @endforeach
             </div>
+        @endif
+
+        @if(isset($relatedNews) && $relatedNews->count() > 0)
+            <section class="related-news-section">
+                <div class="related-news-header">
+                    <h2>Related News</h2>
+                    <p>Berita lain yang mungkin kamu suka</p>
+                </div>
+
+                <div class="related-news-header">
+                    @include('components.home.news-cards', ['latestNews' => $relatedNews, 'showControls' => true])
+                </div>
+            </section>
         @endif
     </div>
 </div>

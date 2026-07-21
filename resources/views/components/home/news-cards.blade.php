@@ -2,6 +2,7 @@
     x-data="{
         currentIndex: 0,
         totalArticles: {{ isset($latestNews) ? count($latestNews) : 0 }},
+        showControls: {{ isset($showControls) ? ($showControls ? 'true' : 'false') : 'true' }},
         
         handleNext() {
             this.currentIndex = (this.currentIndex + 1) % this.totalArticles;
@@ -31,15 +32,19 @@
                 >
                     <div class="news-image-container">
                         <img 
-                            src="{{ $article->previewMedia ? asset('storage/' . $article->previewMedia->path) : ($article->featuredMedia ? asset('storage/' . $article->featuredMedia->path) : asset('images/homeRes/gkjtu-logo.jpg')) }}" 
+                            src="{{ $article->featuredMedia ? asset('storage/' . $article->featuredMedia->path) : ($article->previewMedia ? asset('storage/' . $article->previewMedia->path) : asset('images/homeRes/gkjtu-logo.jpg')) }}"
                             alt="{{ $article['title'] }}"
                         />
                     </div>
                     <div class="news-info">
                         <h3>{{ $article['title'] }}</h3>
-                        <span class="news-date">
-                            {{ $article->published_at ? $article->published_at->format('d/m/Y') : '' }}
-                        </span>
+                        <div class="news-meta">
+                            <span class="news-author">{{ $article->author ?? 'Admin' }}</span>
+                            <span class="news-divider">&middot;</span>
+                            <span class="news-date">
+                                {{ $article->published_at ? $article->published_at->locale('id')->translatedFormat('d F Y') : '' }}
+                            </span>
+                        </div>
                     </div>
                 </div>
             @endforeach
@@ -47,7 +52,7 @@
     </div>
 
     {{-- Navigation & See More --}}
-    <div class="navigation">
+    <div class="navigation" x-show="showControls">
         <div class="dummyDiv"></div>
         
         <div class="news-navigation">
